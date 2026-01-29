@@ -1,0 +1,14 @@
+{
+  "acct_1001": {
+    "assets": [
+      {
+        "asset_id": "asset_9007",
+        "type": "Conveyor",
+        "model": "CVR-2200",
+        "install_date": "2024-03-18",
+        "warranty_end": "2027-03-18",
+        "location": "Fremont, CA"
+      }
+    ]
+  }
+}

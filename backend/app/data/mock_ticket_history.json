@@ -1,0 +1,16 @@
+{
+  "asset_9007": [
+    {
+      "ticket_id": "TCK-12001",
+      "date": "2025-08-11",
+      "symptoms": ["belt slipping"],
+      "resolution": "Replaced belt and tightened tensioner"
+    },
+    {
+      "ticket_id": "TCK-18077",
+      "date": "2025-11-03",
+      "symptoms": ["overheating"],
+      "resolution": "Cleaned motor vents; replaced worn bearing"
+    }
+  ]
+}

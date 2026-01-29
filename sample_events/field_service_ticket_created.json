@@ -1,0 +1,29 @@
+{
+  "event_type": "FIELD_SERVICE_TICKET_CREATED",
+  "event_id": "evt_001",
+  "timestamp": "2026-01-26T12:00:00Z",
+  "customer": {
+    "account_id": "acct_1001",
+    "name": "Acme Packaging"
+  },
+  "payload": {
+    "ticket_id": "TCK-23991",
+    "priority": "P2",
+    "site": {
+      "site_id": "site_77",
+      "city": "Fremont",
+      "state": "CA"
+    },
+    "asset": {
+      "asset_id": "asset_9007",
+      "type": "Conveyor",
+      "model": "CVR-2200"
+    },
+    "symptoms": [
+      "belt slipping",
+      "overheating",
+      "intermittent shutdown"
+    ],
+    "notes": "Started after last maintenance. Production line behind schedule."
+  }
+}
