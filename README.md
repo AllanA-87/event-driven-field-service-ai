@@ -13,15 +13,15 @@ A demo app that receives operational events, enriches them with context (assets 
 ## 🏗️ Architecture
 ```mermaid
 flowchart LR
-    A[Event Source<br/>(Field Service / Manufacturing)] --> B[FastAPI API<br/>/event]
-    B --> C[Validation & Models]
-    C --> D[Enrichment Service]
-    D --> E[(Mock Asset Store)]
-    D --> F[(Mock Ticket History)]
-    D --> G[LLM Service]
-    G --> H[OpenAI API]
-    G --> I[Structured AI Output<br/>(JSON)]
-    I --> J[Streamlit UI]
+    A["Event Source - Field Service and Manufacturing"] --> B["FastAPI API - POST /event"]
+    B --> C["Validation and Models"]
+    C --> D["Enrichment Service"]
+    D --> E["Mock Asset Store"]
+    D --> F["Mock Ticket History"]
+    D --> G["LLM Service"]
+    G --> H["OpenAI API"]
+    G --> I["Structured AI Output - JSON"]
+    I --> J["Streamlit UI"]
 
 
 ## Repo structure
