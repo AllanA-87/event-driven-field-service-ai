@@ -11,7 +11,6 @@ A demo app that receives operational events, enriches them with context (assets 
 - **Streamlit UI** lets you send sample events and view outputs
 
 ## 🏗️ Architecture
-```mermaid
 flowchart LR
     A["Event Source - Field Service and Manufacturing"] --> B["FastAPI API - POST /event"]
     B --> C["Validation and Models"]
