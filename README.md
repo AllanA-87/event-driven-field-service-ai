@@ -10,6 +10,20 @@ A demo app that receives operational events, enriches them with context (assets 
 - **LLM layer** produces JSON recommendations (summary, root cause, actions, next steps)
 - **Streamlit UI** lets you send sample events and view outputs
 
+## 🏗️ Architecture
+```mermaid
+flowchart LR
+    A[Event Source<br/>(Field Service / Manufacturing)] --> B[FastAPI API<br/>/event]
+    B --> C[Validation & Models]
+    C --> D[Enrichment Service]
+    D --> E[(Mock Asset Store)]
+    D --> F[(Mock Ticket History)]
+    D --> G[LLM Service]
+    G --> H[OpenAI API]
+    G --> I[Structured AI Output<br/>(JSON)]
+    I --> J[Streamlit UI]
+
+
 ## Repo structure
 - `backend/` — FastAPI + enrichment + LLM service
 - `ui/` — Streamlit dashboard
