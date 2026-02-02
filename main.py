@@ -3,20 +3,18 @@ import vertexai
 from flask import Flask
 from vertexai.generative_models import GenerativeModel
 
-# We use the project ID you provided
 project_id = "project-db034318-dcdd-459c-82d"
-# Sometimes 'us-central1' has high demand; 'us-east1' is a great backup
-vertexai.init(project=project_id, location="us-central1")
+# Switching to us-east1 just to bypass any local us-central1 capacity issues
+vertexai.init(project=project_id, location="us-east1")
 
-# We use 'gemini-1.5-flash' which is the standard name
-model = GenerativeModel("gemini-1.5-flash")
+# Using the specific versioned name: gemini-1.5-flash-001
+model = GenerativeModel("gemini-1.5-flash-001")
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello():
     try:
-        # Prompting the model
         response = model.generate_content("Give me a one-sentence professional tip for a field service technician.")
         return f"<h1>AI Field Pilot</h1><p><b>Today's Tip:</b> {response.text}</p>"
     except Exception as e:
