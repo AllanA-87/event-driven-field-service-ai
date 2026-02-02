@@ -5,7 +5,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    return "AI Pilot is Online! Your Cloud Build and Cloud Run setup is working."
+    return "AI Pilot is Online! Hello from Google Cloud Run."
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+    # Cloud Run passes the port as an environment variable
+    port = int(os.environ.get("PORT", 8080))
+    app.run(debug=False, host="0.0.0.0", port=port)
