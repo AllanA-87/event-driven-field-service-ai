@@ -9,43 +9,43 @@ model = GenerativeModel("gemini-2.0-flash-exp")
 
 app = Flask(__name__)
 
-# Use double curly braces {{ }} for CSS so Python's .format() ignores them
-HTML_TEMPLATE = """
-<!DOCTYPE html>
-<html>
-<head>
-    <title>AI Field Pilot</title>
-    <style>
-        body {{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1a1a2e; color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }}
-        .card {{ background-color: #16213e; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; max-width: 500px; border: 1px solid #0f3460; }}
-        h1 {{ color: #4ecca3; margin-bottom: 0.5rem; }}
-        p {{ font-size: 1.2rem; line-height: 1.6; color: #e94560; font-weight: bold; }}
-        .footer {{ margin-top: 2rem; font-size: 0.8rem; color: #95a5a6; }}
-        button {{ background-color: #4ecca3; border: none; padding: 10px 20px; border-radius: 5px; color: #1a1a2e; font-weight: bold; cursor: pointer; margin-top: 1rem; }}
-        button:hover {{ background-color: #45b791; }}
-    </style>
-</head>
-<body>
-    <div class="card">
-        <h1>🛠️ AI Field Pilot</h1>
-        <hr style="border: 0.5px solid #0f3460;">
-        <h3>Today's Safety & Tech Tip:</h3>
-        <p>{tip}</p>
-        <button onclick="window.location.reload();">Get New Tip</button>
-        <div class="footer">Powered by Google Vertex AI & Cloud Run</div>
-    </div>
-</body>
-</html>
-"""
-
 @app.route("/")
 def hello():
     try:
+        # Get the AI response
         response = model.generate_content("Give me a one-sentence professional tip for a field service technician.")
-        # Only the {tip} in the HTML will be replaced
-        return HTML_TEMPLATE.format(tip=response.text)
+        ai_tip = response.text
+        
+        # We use a f-string here (the 'f' before the quotes) 
+        # But we must DOUBLE the CSS braces so Python doesn't get confused
+        return f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>AI Field Pilot</title>
+            <style>
+                body {{ font-family: 'Segoe UI', sans-serif; background-color: #1a1a2e; color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }}
+                .card {{ background-color: #16213e; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; max-width: 500px; border: 1px solid #0f3460; }}
+                h1 {{ color: #4ecca3; margin-bottom: 0.5rem; }}
+                p {{ font-size: 1.2rem; line-height: 1.6; color: #e94560; font-weight: bold; }}
+                .footer {{ margin-top: 2rem; font-size: 0.8rem; color: #95a5a6; }}
+                button {{ background-color: #4ecca3; border: none; padding: 10px 20px; border-radius: 5px; color: #1a1a2e; font-weight: bold; cursor: pointer; margin-top: 1rem; }}
+            </style>
+        </head>
+        <body>
+            <div class="card">
+                <h1>🛠️ AI Field Pilot</h1>
+                <hr style="border: 0.5px solid #0f3460;">
+                <h3>Today's Safety & Tech Tip:</h3>
+                <p>{ai_tip}</p>
+                <button onclick="window.location.reload();">Get New Tip</button>
+                <div class="footer">Powered by Google Vertex AI & Cloud Run</div>
+            </div>
+        </body>
+        </html>
+        """
     except Exception as e:
-        return f"<h1>AI Pilot</h1><p>Error: {str(e)}</p>"
+        return f"<h1>AI Pilot Error</h1><p>{str(e)}</p>"
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
