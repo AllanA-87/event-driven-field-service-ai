@@ -1,4 +1,4 @@
-# AI Ops Copilot (Field Service + Manufacturing)
+# AI Ops Copilot (Field Service + Manufacturing) :)
 
 A demo app that receives operational events, enriches them with context (assets + service history), and uses an LLM to generate structured recommendations.
 
