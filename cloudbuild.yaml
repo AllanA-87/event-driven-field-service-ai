@@ -6,5 +6,10 @@ steps:
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args: ['run', 'deploy', 'copilot-service', '--image', 'gcr.io/$PROJECT_ID/field-service-copilot', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
+
 images:
   - 'gcr.io/$PROJECT_ID/field-service-copilot'
+
+# THIS IS THE FIX:
+options:
+  logging: CLOUD_LOGGING_ONLY
