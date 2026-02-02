@@ -1,3 +1,34 @@
+## 🚀 The Architecture
+* **Frontend:** Python Flask (Serverless)
+* **AI Brain:** Vertex AI (Gemini API)
+* **Deployment:** Google Cloud Build (CI/CD)
+* **Hosting:** Google Cloud Run (Auto-scaling)
+
+## ⚠️ The "Locked Down" Reality (Read This First!)
+Google Cloud Services are **locked down by default**. If you see 403 (Forbidden) or 404 (Not Found) errors, **do not be alarmed.** You are on the right track! 
+
+### How to Navigate Permission Hurdles:
+1. **Enable the APIs:** You must explicitly turn on the `aiplatform.googleapis.com` and `run.googleapis.com` services.
+2. **Assign Specific Roles:** Your Cloud Run service account needs the `Vertex AI User` role.
+3. **The "ActAs" Permission:** You must give your own user account the `Service Account User` role to "pass" that identity to the cloud service.
+4. **Leverage Gemini:** If a log message looks like Greek, copy-paste it into the Google Cloud AI Chat. It will guide you to the specific IAM toggle you missed.
+
+
+
+## 🛠️ Setup & Deployment
+1. **Clone the Repo**
+2. **Set your Project ID** in `main.py`.
+3. **Deploy via Cloud Shell:**
+   ```bash
+   gcloud run deploy copilot-service --source . --region us-central1
+
+
+
+
+
+
+
+
 # AI Ops Copilot (Field Service + Manufacturing) 
 
 A demo app that receives operational events, enriches them with context (assets + service history), and uses an LLM to generate structured recommendations.
